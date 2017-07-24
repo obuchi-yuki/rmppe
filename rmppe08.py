@@ -245,60 +245,9 @@ def rmppe(oriImg):
 			deleteIdx.append(i)
 	subset = np.delete(subset, deleteIdx, axis=0)
 
-	#
-	# visualize
-#	colors = [[255, 0, 0], [255, 85, 0], [255, 170, 0], [255, 255, 0], [170, 255, 0], [85, 255, 0], [0, 255, 0], \
-#	          [0, 255, 85], [0, 255, 170], [0, 255, 255], [0, 170, 255], [0, 85, 255], [0, 0, 255], [85, 0, 255], \
-#	          [170, 0, 255], [255, 0, 255], [255, 0, 170], [255, 0, 85]]
-	cmap = matplotlib.cm.get_cmap('hsv')
 
-	canvas = oriImg # B,G,R order
-
-	for i in range(18):
-		rgba = np.array(cmap(1 - i/18. - 1./36))
-		rgba[0:3] *= 255
-		for j in range(len(all_peaks[i])):
-			cv.circle(canvas, all_peaks[i][j][0:2], 4, colors[i], thickness=-1)
-
-	#f6 = plt.figure()
-	to_plot = cv.addWeighted(oriImg, 0.3, canvas, 0.7, 0)
-	#plt.imshow(to_plot[:,:,[2,1,0]])
-	#fig = matplotlib.pyplot.gcf()
-	#fig.set_size_inches(12, 12)
-
-	# save images
-	#plt.savefig(path + 'fig6.png')
-
-
-	#
-	# visualize 2
-	stickwidth = 4
-
-	for i in range(17):
-		for n in range(len(subset)):
-			index = subset[n][np.array(limbSeq[i])-1]
-			if -1 in index:
-				continue
-			cur_canvas = canvas.copy()
-			Y = candidate[index.astype(int), 0]
-			X = candidate[index.astype(int), 1]
-			mX = np.mean(X)
-			mY = np.mean(Y)
-			length = ((X[0] - X[1]) ** 2 + (Y[0] - Y[1]) ** 2) ** 0.5
-			angle = math.degrees(math.atan2(X[0] - X[1], Y[0] - Y[1]))
-			polygon = cv.ellipse2Poly((int(mY),int(mX)), (int(length/2), stickwidth), int(angle), 0, 360, 1)
-			cv.fillConvexPoly(cur_canvas, polygon, colors[i])
-			canvas = cv.addWeighted(canvas, 0.4, cur_canvas, 0.6, 0)
-
-	#plt.imshow(canvas[:,:,[2,1,0]])
-	#fig = matplotlib.pyplot.gcf()
-	#fig.set_size_inches(12, 12)
-
-	# save images
-	#plt.savefig(path + 'fig7.png')
-
-#	return f6, all_peaks, subset, candidate
-	return canvas, all_peaks, subset, candidate
+#	return all_peaks, subset, candidate
+	return all_peaks, subset, candidate
 
 if __name__ == '__main__':
 	start_time = time.time()
@@ -343,7 +292,7 @@ if __name__ == '__main__':
 		img = cv.imread(path + '/' + image_names[i])
 #		fout, apout, sout, cout = rmppe(img)
 #		fout.savefig(path2 + '/' + image_names[i])
-		#imgout, apout, sout, cout = rmppe(img)
+		apout, sout, cout = rmppe(img)
 
 		#cv.imwrite(path2 + '/' + image_names[i], imgout)
 		entry['all_peaks_' + image_names[i]] = apout
