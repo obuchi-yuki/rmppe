@@ -343,9 +343,9 @@ if __name__ == '__main__':
 		img = cv.imread(path + '/' + image_names[i])
 #		fout, apout, sout, cout = rmppe(img)
 #		fout.savefig(path2 + '/' + image_names[i])
-		imgout, apout, sout, cout = rmppe(img)
+		#imgout, apout, sout, cout = rmppe(img)
 
-		cv.imwrite(path2 + '/' + image_names[i], imgout)
+		#cv.imwrite(path2 + '/' + image_names[i], imgout)
 		entry['all_peaks_' + image_names[i]] = apout
 		entry['subset_' + image_names[i]] = sout
 		entry['candidate_' + image_names[i]] = cout
