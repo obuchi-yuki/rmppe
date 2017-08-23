@@ -283,7 +283,7 @@ if __name__ == '__main__':
 	#if os.path.exists(path2) == False:
 	#	os.mkdir(path2)
 
-	cap = cv2.VideoCapture(argvs[1])
+	cap = cv.VideoCapture(argvs[1])
 
 	#image_names = sorted(os.listdir(path + '/'))
 	f = open(path2 + '.pickle', 'wb')
