@@ -280,11 +280,11 @@ if __name__ == '__main__':
 	path = argvs[1]
 	fcount = fCount(path, '.jpg')
 	path2 = path  + '_result'
-	if os.path.exists(path2) == False:
-		os.mkdir(path2)
+	#if os.path.exists(path2) == False:
+	#	os.mkdir(path2)
 
 	image_names = sorted(os.listdir(path + '/'))
-	f = open(path2 + '/' + path2 + '.pickle', 'wb')
+	f = open(path2 + '.pickle', 'wb')
 	entry = {}
 #	i = 0
 	for i in range(fcount):
