@@ -86,8 +86,8 @@ if __name__ == '__main__':
     except EOFError:
          print ('error')
 
-    fcount = len(entry) / 3
-    fcount = int(fcount)
+    #fcount = len(entry) / 3
+    #fcount = int(fcount)
 
     fourcc = cv2.VideoWriter_fourcc('m','p','4','v')
     out = cv2.VideoWriter(path+'_'+year+'-'+month+'-'+day+'_'+time1+'_'+year+'-'+month+'-'+day+'_'+time2+'_result.mp4', fourcc, 15.25, (1280, 720))
