@@ -99,7 +99,7 @@ if __name__ == '__main__':
         if flag == False:  # Is a frame left?
             break
         else:
-            if fnum % 100 = 0:
+            if fnum % 100 == 0:
                 print (fnum)
             img = openpose(img, fnum)
             out.write(img)
